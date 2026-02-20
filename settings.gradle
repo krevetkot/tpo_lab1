@@ -1,0 +1,5 @@
+rootProject.name = "tpo_lab1"
+include 'task1'
+include 'task2'
+include 'task3'
+
