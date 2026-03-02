@@ -15,7 +15,7 @@ public class Main {
 
         try {
             double result = Arcsin.asin(x, eps, n);
-            System.out.printf("arcsin(%.4f) = %.4f +- %e", x, result, eps);
+            System.out.printf("arcsin(%.4f) = %.4f +- %e", x, Math.toDegrees(result), Math.toDegrees(eps));
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
         }

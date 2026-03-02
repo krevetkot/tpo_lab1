@@ -1,9 +1,36 @@
 package org.example;
 
+import static java.lang.Double.NaN;
+
+
 public class Arcsin {
-    public static double asin(double x, double eps, int maxIterations) throws IllegalArgumentException{
+    private static double EPS = 1e-12;
+    private static int MAX_ITERATIONS = 200000;
+
+    public static double getEPS(){
+        return EPS;
+    }
+
+    public static int getMaxIterations(){
+        return MAX_ITERATIONS;
+    }
+
+    public static void setEPS(double eps){
+        EPS = eps;
+    }
+
+    public static void setMaxIterations(int maxIters){
+        MAX_ITERATIONS = maxIters;
+    }
+
+    // есть расширенная версия метода со всеми настройками, а есть базовая
+    public static double asin(double x) {
+        return asin(x, EPS, MAX_ITERATIONS);
+    }
+
+    public static double asin(double x, double eps, int maxIterations) {
         if (x < -1.0 || x > 1.0) {
-            throw new IllegalArgumentException("x must be in [-1, 1]");
+            return NaN; // потому что так работает Math.asin()
         }
 
         double term = x;
