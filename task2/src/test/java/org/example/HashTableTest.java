@@ -9,11 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HashTableTest {
 
-    // Хеш всегда в 0 = гарантированные коллизии
     static class TestHashTable extends HashTable {
         @Override
         protected int hash(String key) {
-            super.hash(key); // чтобы зафиксировать HASH_COMPUTED
+            super.hash(key);
             return 0;
         }
     }

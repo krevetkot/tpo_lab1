@@ -26,7 +26,7 @@ public class ShipTest {
     void oneHandleNoShakingTest() {
         Human ford = new Human("Форд", 35);
         Ship ship = new Ship("Корабль");
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
 
         ford.grab(blue);
         ship.applyHandles(ford);
@@ -40,8 +40,8 @@ public class ShipTest {
     void differentHandleTypesCauseShakingTest() {
         Human ford = new Human("Форд", 35);
         Ship ship = new Ship("Корабль");
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
+        Handle red = new Handle(Color.RED, TrackType.ARC);
 
         ford.grab(blue, red);
         ship.applyHandles(ford);
@@ -54,8 +54,8 @@ public class ShipTest {
     void lastGrabbedHandleDefinesTrackTypeTest() {
         Human ford = new Human("Форд", 35);
         Ship ship = new Ship("Корабль");
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
+        Handle red = new Handle(Color.RED, TrackType.ARC);
 
         ford.grab(blue);
         ship.applyHandles(ford);
@@ -71,8 +71,8 @@ public class ShipTest {
     void releaseHalfStopsShakingTest() {
         Human ford = new Human("Форд", 35);
         Ship ship = new Ship("Корабль");
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle blue = new Handle( Color.BLUE, TrackType.STRAIGHT);
+        Handle red = new Handle(Color.RED, TrackType.ARC);
 
         ford.grab(blue, red);
         ship.applyHandles(ford);

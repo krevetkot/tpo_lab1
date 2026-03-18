@@ -16,7 +16,7 @@ public class PushCommandTest {
     void pushCommandOneHandleTest() {
         Human ford = new Human("Форд", 35);
         Ship ship = new Ship("Корабль");
-        Handle green = new Handle("Зелёная рукоятка", Color.GREEN, TrackType.AROUND);
+        Handle green = new Handle(Color.GREEN, TrackType.AROUND);
 
         PushCommand command = new PushCommand(ford, ship, green);
         command.execute();
@@ -32,8 +32,8 @@ public class PushCommandTest {
     void pushCommandDifferentTypesCauseShakingTest() {
         Human ford = new Human("Форд", 35);
         Ship ship = new Ship("Корабль");
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
+        Handle red = new Handle(Color.RED, TrackType.ARC);
 
         PushCommand command = new PushCommand(ford, ship, blue, red);
         command.execute();

@@ -11,7 +11,7 @@ public class HandleTest {
     @Test
     @DisplayName("Handle is created with correct properties")
     void handleCreationTest() {
-        Handle handle = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
+        Handle handle = new Handle(Color.BLUE, TrackType.STRAIGHT);
 
         assertEquals("Синяя рукоятка", handle.getName());
         assertEquals(Color.BLUE, handle.getType());
@@ -22,7 +22,7 @@ public class HandleTest {
     @Test
     @DisplayName("Handle grabbed state can be changed")
     void handleGrabbedStateTest() {
-        Handle handle = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle handle = new Handle(Color.RED, TrackType.ARC);
 
         handle.setGrabbed(true);
         assertTrue(handle.isGrabbed());

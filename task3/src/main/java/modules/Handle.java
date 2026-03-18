@@ -10,11 +10,12 @@ public class Handle {
     private final TrackType trackEffect;
     private boolean grabbed;
 
-    public Handle(String name, Color type, TrackType trackEffect) {
-        this.name = name;
+    public Handle(Color type, TrackType trackEffect) {
+        this.name = type.getName() + " рукоятка";
         this.type = type;
         this.trackEffect = trackEffect;
         this.grabbed = false;
+
     }
 
     public String getName() { return name; }

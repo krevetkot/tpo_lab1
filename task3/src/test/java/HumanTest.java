@@ -26,7 +26,7 @@ public class HumanTest {
     @DisplayName("Human grabs one handle")
     void grabOneHandleTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
 
         ford.grab(blue);
 
@@ -40,8 +40,8 @@ public class HumanTest {
     @DisplayName("Human grabs several handles and last grabbed is remembered")
     void grabSeveralHandlesTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
+        Handle red = new Handle(Color.RED, TrackType.ARC);
 
         ford.grab(blue, red);
 
@@ -55,8 +55,8 @@ public class HumanTest {
     @DisplayName("Re-grabbing handle makes it the last grabbed one")
     void regrabHandleTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
+        Handle red = new Handle(Color.RED, TrackType.ARC);
 
         ford.grab(blue, red);
         assertEquals(red, ford.getLastGrabbedHandle());
@@ -71,8 +71,8 @@ public class HumanTest {
     @DisplayName("Release half releases one handle out of two")
     void releaseHalfTwoHandlesTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle("Синяя рукоятка", Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle("Красная рукоятка", Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
+        Handle red = new Handle(Color.RED, TrackType.ARC);
 
         ford.grab(blue, red);
         List<Handle> released = ford.releaseHalf();

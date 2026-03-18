@@ -1,10 +1,10 @@
 package enums;
 
 public enum Color {
-    RED("красный"),
-    BLUE("синий"),
-    GREEN("зеленый"),
-    BLACK("черный");
+    RED("Красная"),
+    BLUE("Синяя"),
+    GREEN("Зеленая"),
+    BLACK("Черная");
 
     private final String name;
     Color(String colorName){

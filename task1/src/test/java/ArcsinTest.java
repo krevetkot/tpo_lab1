@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Arcsin unit test")
 public class ArcsinTest {
     @Test
-    @DisplayName("Out of domain: x < -1 or x > 1 -> NaN")
+    @DisplayName("Boundaries: -1 < x < 1")
     void outOfDomainReturnsNaN() {
         assertTrue(Double.isNaN(Arcsin.asin(1.000001)));
         assertTrue(Double.isNaN(Arcsin.asin(-1.000001)));
@@ -19,7 +19,7 @@ public class ArcsinTest {
     }
 
     @Test
-    @DisplayName("NaN and Infinity -> NaN")
+    @DisplayName("NaN and Infinity")
     void nanAndInfinityReturnNaN() {
         assertTrue(Double.isNaN(Arcsin.asin(Double.NaN)));
         assertTrue(Double.isNaN(Arcsin.asin(Double.POSITIVE_INFINITY)));
@@ -27,7 +27,7 @@ public class ArcsinTest {
     }
 
     @Test
-    @DisplayName("Boundary values x=+-1 -> +-pi/2")
+    @DisplayName("Boundary values x=+-1")
     void boundaryValues() {
         double eps = 1e-6;
         int iters = 2000000;
@@ -63,7 +63,7 @@ public class ArcsinTest {
 
     @ParameterizedTest
     @ValueSource(doubles = { -0.9, -0.5, -0.1, 0.0, 0.1, 0.5, 0.9 })
-    @DisplayName("Matches Math.asin for typical values")
+    @DisplayName("Typical values")
     void matchesMathAsinTypical(double x) {
         double eps = 1e-15;
         int iters = 200000;
@@ -93,7 +93,7 @@ public class ArcsinTest {
 
 
     @Test
-    @DisplayName("Near 1: still close to Math.asin, but needs looser tolerance and more iterations")
+    @DisplayName("Near 1")
     void nearOneStillReasonableButNeedsLooserTolerance() {
         double x = 0.999999;
         double res = Arcsin.asin(x, 1e-12, 2_000_000);

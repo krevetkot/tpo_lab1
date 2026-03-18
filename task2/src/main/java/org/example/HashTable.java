@@ -8,7 +8,7 @@ public class HashTable {
 
     private static final int CAPACITY = 10;
 
-    private List<Entry>[] table;
+    private LinkedList[] table;
 
     //контрольные точки
     public enum TP {
@@ -85,7 +85,7 @@ public class HashTable {
 
         emit(TP.BUCKET_NOT_EMPTY);
 
-        for (Entry entry : bucket) {
+        for (Entry entry: bucket) {
             emit(TP.SCAN_ENTRY);
             if (entry.key.equals(key)) {
                 emit(TP.KEY_FOUND);
