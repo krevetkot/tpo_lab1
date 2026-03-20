@@ -25,7 +25,7 @@ public class App {
 
         ford.releaseHalf();
         ship.applyHandles(ford);
-        System.out.println("После отпускания половины: траектория: " + ship.getTrackType().getTitle()
+        System.out.println("После отпускания половины рукояток: траектория: " + ship.getTrackType().getTitle()
                 + "; корабль трясёт? " + ship.isShaking());
 
         new PushCommand(ford, ship, green).execute();

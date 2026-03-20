@@ -8,7 +8,7 @@ public class HashTable {
 
     private static final int CAPACITY = 10;
 
-    private LinkedList[] table;
+    private final LinkedList<Entry>[] table;
 
     //контрольные точки
     public enum TP {

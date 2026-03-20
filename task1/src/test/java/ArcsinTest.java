@@ -48,6 +48,7 @@ public class ArcsinTest {
     void IterationOneReturnsTwoItems() {
         double x = 0.3;
         double expect = x + (x * x * x) / 6.0;
+        Arcsin.setMaxIterations(1);
         double res = Arcsin.asin(x, 1e-30, 1);
         assertEquals(expect, res, 0.0);
     }
@@ -100,5 +101,21 @@ public class ArcsinTest {
         double ref = Math.asin(x);
 
         assertEquals(ref, res, 1e-6);
+    }
+
+    @Test
+    @DisplayName("asin(x) with current global settings")
+    void changeCurrentGlobalSettings() {
+        double x = 0.5;
+
+        Arcsin.setEPS(1e-4);
+        Arcsin.setMaxIterations(2);
+
+        double expected = Arcsin.asin(x, 1e-4, 2);
+        double actual = Arcsin.asin(x);
+
+        assertEquals(expected, actual, 0.0);
+        assertEquals(1e-4, Arcsin.getEPS(), 0.0);
+        assertEquals(2, Arcsin.getMaxIterations(), 0.0);
     }
 }
