@@ -17,3 +17,8 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+tasks.withType(Test).configureEach {
+    jvmArgs '-Dfile.encoding=UTF-8'
+    systemProperty 'file.encoding', 'UTF-8'
+}

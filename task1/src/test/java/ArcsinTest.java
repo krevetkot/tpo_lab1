@@ -76,7 +76,7 @@ public class ArcsinTest {
     }
 
     @Test
-    @DisplayName("Odd function property: asin(-x) = -asin(x)")
+    @DisplayName("Odd function: asin(-x) = -asin(x)")
     void oddFunctionProperty() {
         double x = 0.7;
         double a = Arcsin.asin(x, 1e-15, 200_000);
@@ -85,7 +85,7 @@ public class ArcsinTest {
     }
 
     @Test
-    @DisplayName("Small Approximation returns x")
+    @DisplayName("Small approximation returns x")
     void smallXApproximatelyEqualsX() {
         double x = 1e-6;
         double res = Arcsin.asin(x, 1e-25, 50);

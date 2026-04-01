@@ -45,20 +45,16 @@ public class Human {
         }
     }
 
-    public List<Handle> releaseHalf() {
-        int n = grabbedHandles.size();
-        int toRelease = n / 2;
+    public int release(Handle... handles){
+        int releasedSize = 0;
+        for (Handle h : handles) {
+            if (h == null) continue;
 
-        List<Handle> released = new ArrayList<>();
-        Iterator<Handle> it = grabbedHandles.iterator();
-
-        while (it.hasNext() && toRelease > 0) {
-            Handle h = it.next();
-            it.remove();
-            h.setGrabbed(false);
-            released.add(h);
-            toRelease--;
+            if (grabbedHandles.remove(h)) {
+                h.setGrabbed(false);
+                releasedSize++;
+            }
         }
-        return released;
+        return releasedSize;
     }
 }

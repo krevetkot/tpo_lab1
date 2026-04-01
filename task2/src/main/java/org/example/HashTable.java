@@ -10,7 +10,6 @@ public class HashTable {
 
     private final LinkedList<Entry>[] table;
 
-    //контрольные точки
     public enum TP {
         HASH_COMPUTED,
         BUCKET_EMPTY,

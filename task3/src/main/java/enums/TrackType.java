@@ -1,9 +1,12 @@
 package enums;
 
 public enum TrackType {
-    STRAIGHT("прямо"),
-    ARC("по дуге"),
-    AROUND("по кругу");
+    LEFT("лево"),
+    RIGHT("право"),
+    FORWARD("вперед"),
+    BACKWARD("назад"),
+    UP("вверх"),
+    DOWN("вниз");
 
     private final String title;
 

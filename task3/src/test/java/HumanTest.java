@@ -26,7 +26,7 @@ public class HumanTest {
     @DisplayName("Human grabs one handle")
     void grabOneHandleTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
+        Handle blue = new Handle(Color.BLUE, TrackType.FORWARD);
 
         ford.grab(blue);
 
@@ -40,8 +40,8 @@ public class HumanTest {
     @DisplayName("Human grabs several handles and last grabbed is remembered")
     void grabSeveralHandlesTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle(Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.FORWARD);
+        Handle red = new Handle(Color.RED, TrackType.UP);
 
         ford.grab(blue, red);
 
@@ -55,8 +55,8 @@ public class HumanTest {
     @DisplayName("Re-grabbing handle makes it the last grabbed one")
     void regrabHandleTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle(Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.FORWARD);
+        Handle red = new Handle(Color.RED, TrackType.UP);
 
         ford.grab(blue, red);
         assertEquals(red, ford.getLastGrabbedHandle());
@@ -67,29 +67,62 @@ public class HumanTest {
         assertEquals(2, ford.getGrabbedHandles().size());
     }
 
+
     @Test
-    @DisplayName("Release half releases one handle out of two")
-    void releaseHalfTwoHandlesTest() {
+    @DisplayName("Release returns number of actually released handles")
+    void releaseGrabbedHandlesTest() {
         Human ford = new Human("Форд", 35);
-        Handle blue = new Handle(Color.BLUE, TrackType.STRAIGHT);
-        Handle red = new Handle(Color.RED, TrackType.ARC);
+        Handle blue = new Handle(Color.BLUE, TrackType.FORWARD);
+        Handle red = new Handle(Color.RED, TrackType.UP);
 
         ford.grab(blue, red);
-        List<Handle> released = ford.releaseHalf();
 
-        assertEquals(1, released.size());
+        int released = ford.release(blue);
+
+        assertEquals(1, released);
+        assertFalse(blue.isGrabbed());
+        assertTrue(red.isGrabbed());
         assertEquals(1, ford.getGrabbedHandles().size());
-        assertFalse(released.get(0).isGrabbed());
+        assertFalse(ford.getGrabbedHandles().contains(blue));
+        assertEquals(red, ford.getLastGrabbedHandle());
     }
 
     @Test
-    @DisplayName("Release half from empty set returns empty list")
+    @DisplayName("Release ignores null handles")
+    void releaseNullHandleTest() {
+        Human ford = new Human("Форд", 35);
+        Handle blue = new Handle(Color.BLUE, TrackType.FORWARD);
+
+        ford.grab(blue);
+
+        int released = ford.release(null, blue, null);
+
+        assertEquals(1, released);
+        assertTrue(ford.getGrabbedHandles().isEmpty());
+        assertFalse(blue.isGrabbed());
+    }
+
+    @Test
+    @DisplayName("Release from empty set returns 0")
     void releaseHalfEmptyTest() {
         Human ford = new Human("Форд", 35);
 
-        List<Handle> released = ford.releaseHalf();
+        int released = ford.release();
 
-        assertTrue(released.isEmpty());
+        assertEquals(0, released);
+        assertTrue(ford.getGrabbedHandles().isEmpty());
+    }
+
+    @Test
+    @DisplayName("Releasing a handle that was not grabbed returns zero")
+    void releaseNotGrabbedHandleTest() {
+        Human ford = new Human("Форд", 35);
+        Handle blue = new Handle(Color.BLUE, TrackType.FORWARD);
+
+        int released = ford.release(blue);
+
+        assertEquals(0, released);
+        assertFalse(blue.isGrabbed());
         assertTrue(ford.getGrabbedHandles().isEmpty());
     }
 }

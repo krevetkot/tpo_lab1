@@ -4,7 +4,8 @@ public enum Color {
     RED("Красная"),
     BLUE("Синяя"),
     GREEN("Зеленая"),
-    BLACK("Черная");
+    BLACK("Черная"),
+    YELLOW("Желтая");
 
     private final String name;
     Color(String colorName){
