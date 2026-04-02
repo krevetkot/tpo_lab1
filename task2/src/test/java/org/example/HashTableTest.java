@@ -32,6 +32,24 @@ class HashTableTest {
                 HashTable.TP.INSERT_NEW
         ), trace);
     }
+    @Test
+    void testFoundAndReturnsValue_trace() {
+        TestHashTable table = new TestHashTable();
+        table.put("A", "1");
+
+        List<HashTable.TP> trace = new ArrayList<>();
+        table.setTrace(trace::add);
+
+        String result = table.get("A");
+
+        assertEquals("1", result);
+        assertEquals(List.of(
+                HashTable.TP.HASH_COMPUTED,
+                HashTable.TP.BUCKET_NOT_EMPTY,
+                HashTable.TP.SCAN_ENTRY,
+                HashTable.TP.KEY_FOUND
+        ), trace);
+    }
 
     @Test
     void testPutCollision_trace() {
@@ -49,6 +67,25 @@ class HashTableTest {
                 HashTable.TP.SCAN_ENTRY,
                 HashTable.TP.KEY_NOT_FOUND,
                 HashTable.TP.INSERT_NEW
+        ), trace);
+    }
+
+    @Test
+    void testGetNotFoundValue_trace() {
+        TestHashTable table = new TestHashTable();
+        table.put("A", "1");
+
+        List<HashTable.TP> trace = new ArrayList<>();
+        table.setTrace(trace::add);
+
+        String result = table.get("Z");
+
+        assertNull(result);
+        assertEquals(List.of(
+                HashTable.TP.HASH_COMPUTED,
+                HashTable.TP.BUCKET_NOT_EMPTY,
+                HashTable.TP.SCAN_ENTRY,
+                HashTable.TP.KEY_NOT_FOUND
         ), trace);
     }
 
@@ -117,6 +154,38 @@ class HashTableTest {
         assertEquals(List.of(
                 HashTable.TP.HASH_COMPUTED,
                 HashTable.TP.SCAN_ENTRY,
+                HashTable.TP.REMOVE_NOT_FOUND
+        ), trace);
+    }
+
+    @Test
+    void testGetFromEmptyTable_trace() {
+        TestHashTable table = new TestHashTable();
+
+        List<HashTable.TP> trace = new ArrayList<>();
+        table.setTrace(trace::add);
+
+        String result = table.get("P");
+
+        assertNull(result);
+        assertEquals(List.of(
+                HashTable.TP.HASH_COMPUTED,
+                HashTable.TP.BUCKET_EMPTY,
+                HashTable.TP.KEY_NOT_FOUND
+        ), trace);
+    }
+
+    @Test
+    void testRemoveFromEmptyTable_trace() {
+        TestHashTable table = new TestHashTable();
+
+        List<HashTable.TP> trace = new ArrayList<>();
+        table.setTrace(trace::add);
+
+        table.remove("W");
+
+        assertEquals(List.of(
+                HashTable.TP.HASH_COMPUTED,
                 HashTable.TP.REMOVE_NOT_FOUND
         ), trace);
     }
